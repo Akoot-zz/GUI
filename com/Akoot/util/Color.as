@@ -1,12 +1,27 @@
 ﻿package com.Akoot.util
 {
+	import flash.geom.ColorTransform;
+	import flash.display.MovieClip;
+
 	public class Color
 	{
 		public function Color()
 		{
 			// constructor code
 		}
-
+		
+		public static function getColorTransform(color:uint):ColorTransform
+		{
+			var c:ColorTransform = new ColorTransform();
+			c.color = color;
+			return c;
+		}
+		
+		public static function setColor(m:MovieClip, color:uint):void
+		{
+			m.transform.colorTransform = getColorTransform(color);
+		}
+		
 		public static function getColor(red:uint, green:uint, blue:uint):uint
 		{
 			var intVal:int = red << 16 | green << 8 | blue;

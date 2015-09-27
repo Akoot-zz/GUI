@@ -17,6 +17,9 @@
 
 		private var theStage:Stage;
 		private var over_close_btn:Boolean;
+		
+		public static const WINDOWS:Number = 0;
+		public static const MAC:Number = 1;
 
 		public function TopButtons()
 		{
@@ -32,6 +35,8 @@
 			close.addEventListener(MouseEvent.CLICK, click_close);
 			close.addEventListener(MouseEvent.MOUSE_OUT, out_close);
 			close.addEventListener(MouseEvent.MOUSE_OVER, over_close);
+			title.width = main.WIDTH - close.width;
+			title.x = 5;
 		}
 
 		private function down(event:MouseEvent):void
@@ -41,6 +46,21 @@
 				NativeApplication.nativeApplication.activeWindow.startMove();
 			}
 		}
+		
+		public function setCloseOrientation(o:Number):void
+		{
+			if(o != WINDOWS)
+			{
+				close.x = 0;
+				close.gotoAndStop("mac");
+				close.bg.alpha = 0;
+			}
+			else
+			{
+				close.x = main.WIDTH - close.width;
+			}
+		}
+		
 		private function over_close(event:Event):void
 		{
 			close.bg.gotoAndStop(2);
